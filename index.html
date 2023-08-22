@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <title>Tailwind Dashboard</title>
 </head>
 <body class="bg-gray-200">
@@ -102,10 +104,12 @@
           <div><img class="w-10 h-10" src="public/images/wallet.png" alt=""></div> <!-- dont know why this needs to have a div-->
           <div class="font-bold text-xl text-gray-700">Super plus</div>
           <div class="my-3 uppercase text-sm font-bold text-gray-400">Sales</div>
-          <div class=>
+          <div>
             <span class="font-bold text-3xl">$24,587</span>
             <span class="bg-green-500 font-bold rounded-full text-sm text-white p-1 align-text-top">+48%</span>
           </div>
+          <canvas id="card-1-chart"></canvas>
+
         </div>
 
         <div class="w-1/2 p-4 bg-white">
@@ -126,5 +130,37 @@
     </div>
     <!-- content end -->
   </div>
+
+
+  <script>
+    const ctx = document.getElementById('card-1-chart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Sales',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 0, 0, 1)',
+            'rgba(255, 0, 0, 1)',
+            'rgba(255, 255, 0, 1)',
+            'rgba(255, 255, 0, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 255, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
